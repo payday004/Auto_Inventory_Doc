@@ -3,8 +3,7 @@ import openpyxl
 import os
 import mailmerge
 
-fields = ('First Name', 'Last Name', 'Date', 'Asset', 'Serial Number', 'Asset List')
-password = "examplepassword"
+fields = ('First Name', 'Last Name', 'Date', 'Asset', 'Serial Number', 'Asset List', 'Password')
 domain = "highstretit.com"
 
 
@@ -40,6 +39,9 @@ def clear_entries(entries):
 
     entries['Asset List'].delete(0, tk.END)
     entries['Asset List'].insert(0, "0")
+
+    entries['Password'].delete(0, tk.END)
+    entries['Password'].insert(0, "0")
 
 
 # linear search for excel "Database"
@@ -86,6 +88,7 @@ def run_cmd_prompt():
     cmd_asset = input("enter asset:         \t")
     cmd_serial_number = input("enter serial number: \t")
     cmd_asset_list = input("enter asset list:    \t")
+    cmd_password = input("enter password:      \t")
 
     # set up data.xlsx
     input_file = str(os.getcwd()) + '\\' + "data.xlsx"
@@ -120,7 +123,7 @@ def run_cmd_prompt():
         # password doc
         document_2 = mailmerge.MailMerge(template_pass)
         username = cmd_first_name + '.' + cmd_last_name
-        document_2.merge(PASSWORD=password,
+        document_2.merge(PASSWORD=cmd_password,
                          USERNAME=username,
                          DOMAIN=domain,
                          EMAIL_ADDRESS=username + '@' + domain)
@@ -147,6 +150,7 @@ def run_enter(entries):
     asset = entries['Asset'].get()
     serial_number = str(entries['Serial Number'].get())
     asset_list = entries['Asset List'].get()
+    password = entries['Password'].get()
 
     # set up data.xlsx
     input_file = str(os.getcwd()) + '\\' + "data.xlsx"
