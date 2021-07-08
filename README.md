@@ -1,10 +1,10 @@
 AUTO_HARDWARE_DOC
-	Automates "Highstreet IT Computer/Software Asset Receipt" document creation. 
 
-	Takes data from "input.xlsx" and generates documents using the "form.docx" file. 
+	Automates IT department new hire document creation process
 
 
 PREREQ:
+
 	-python installed 
 
 	-pip packages "openpyxl" and "docx-mailmerge" installed
@@ -17,6 +17,7 @@ PREREQ:
 
 
 RUN:
+
 	-check if python and pip packages are installed
 	
 	-double click on main.py 
